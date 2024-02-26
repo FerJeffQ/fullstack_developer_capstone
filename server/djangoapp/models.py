@@ -1,8 +1,9 @@
 # Uncomment the following imports before adding the Model code
+# import sys
 
-# from django.db import models
+from django.db import models
 # from django.utils.timezone import now
-# from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 # Create your models here.
@@ -12,6 +13,13 @@
 # - Description
 # - Any other fields you would like to include in car make model
 # - __str__ method to print a car make object
+class CarMake(models.Model):
+    name = models.CharField(null=False, max_length=50)
+    description = models.TextField()
+    is_luxury = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.name)
 
 
 # <HINT> Create a Car Model model `class CarModel(models.Model):`:
@@ -24,41 +32,25 @@
 # - Any other fields you would like to include in car model
 # - __str__ method to print a car make object
 
-# Uncomment the following imports before adding the Model code
-
-from django.db import models
-# from django.utils.timezone import now
-from django.core.validators import MaxValueValidator, MinValueValidator
-
-
-# Create your models here.
-
-# <HINT> Create a Car Make model `class CarMake(models.Model)`:
-class CarMake(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    # Other fields as needed
-
-    def __str__(self):
-        return self.name  # Return the name as the string representation
-
-
-# <HINT> Create a Car Model model `class CarModel(models.Model):`:
 class CarModel(models.Model):
-    # Many-to-One relationship
-    car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    CAR_TYPES = [
+    type_choices = [
         ('SEDAN', 'Sedan'),
         ('SUV', 'SUV'),
         ('WAGON', 'Wagon'),
-        # Add more choices as required
+        ('TRUCK', 'Truck'),
+        ('COMPACT', 'Compact'),
+
     ]
-    type = models.CharField(max_length=10, choices=CAR_TYPES, default='SUV')
+
+    car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
+    name = models.CharField(null=False, max_length=50)
+    type = models.CharField(
+        max_length=10, choices=type_choices, default='SEDAN')
     year = models.IntegerField(default=2023,
-                               validators=[MaxValueValidator(2023),
-                                           MinValueValidator(2015)])
-    # Other fields as needed
+                               validators=[
+                                   MinValueValidator(2015),
+                                   MaxValueValidator(2023)
+                               ])
 
     def __str__(self):
-        return self.name  # Return the name as the string representation
+        return str(self.year) + " " + self.name
