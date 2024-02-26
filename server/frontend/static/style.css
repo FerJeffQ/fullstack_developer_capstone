@@ -124,3 +124,66 @@ img{
     text-align:center;
     box-shadow: 2px 2px 3px #999;  
 }
+
+/* add css */
+
+
+
+
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra los elementos horizontalmente */
+  text-align: center; /* Centra el contenido de contact-photo */
+  max-width: 1000px; /* Ajusta el ancho máximo según tus preferencias */
+  margin: auto; /* Centra horizontalmente */
+  padding-top: 120px; /* Añade un poco de espacio alrededor del div */
+  box-sizing: border-box; /* Asegura que el padding se incluya en el ancho máximo */
+}
+
+.contact-photo {
+  border-bottom: 1px solid black; /* Línea inferior */
+  margin-bottom: 20px; /* Espacio entre la foto y los otros elementos */
+  padding-bottom: 20px; /* Espacio adicional debajo de la foto */
+}
+
+.contact-info {
+  display: flex;
+  justify-content: space-between; /* Distribuye los elementos a lo largo del contenedor */
+  width: 100%;
+}
+
+.logo {
+  flex: 1; /* Ocupa todo el espacio disponible */
+  border-right: 1px solid black; /* Línea derecha */
+  padding-right: 20px; /* Espacio entre el logo y la línea */
+  margin-right: 20px; /* Espacio entre el logo y el borde del contenedor */
+}
+
+.contact-list {
+  flex: 1; /* Ocupa todo el espacio disponible */
+  text-align: right; /* Alinea el texto a la derecha */
+  font-size: 17px;
+}
+
+.contact-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-list li {
+  margin-bottom: 5px;
+}
+
+.logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+.contact-list h2 {
+  margin-bottom: 10px;
+}
+.contact-list ul li {
+  color: rgb(62, 148, 161); /* Cambia el color del texto a azul */
+}
